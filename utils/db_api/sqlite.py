@@ -69,28 +69,6 @@ class Database:
 
         return self.execute(sql, parameters=parameters, fetchall=True)
 
-    def select_user(self, **kwargs):
-        # SQL_EXAMPLE = "SELECT * FROM Users where id=1 AND Name='John'"
-        sql = "SELECT * FROM Users WHERE "
-        sql, parameters = self.format_args(sql, kwargs)
-
-        return self.execute(sql, parameters=parameters, fetchone=True)
-
-    def count_users(self):
-        return self.execute("SELECT COUNT(*) FROM Users;", fetchone=True)
-
-    def update_user_email(self, email, id):
-        # SQL_EXAMPLE = "UPDATE Users SET email=mail@gmail.com WHERE id=12345"
-
-        sql = f"""
-        UPDATE Users SET email=? WHERE id=?
-        """
-        return self.execute(sql, parameters=(email, id), commit=True)
-
-    def delete_users(self):
-        self.execute("DELETE FROM Users WHERE TRUE", commit=True)
-
-
 def logger(statement):
     print(f"""
 _____________________________________________________        
